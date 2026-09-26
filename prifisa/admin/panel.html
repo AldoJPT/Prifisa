@@ -1,0 +1,116 @@
+<!-- ============================================= -->
+<!-- ARCHIVO: admin/panel.html                     -->
+<!-- ============================================= -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Panel de publicaciones | PRIFISA</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.0/index.css" />
+<link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+
+<div class="admin-shell">
+
+  <div class="admin-topbar">
+    <div class="container">
+      <a href="../index.html" class="nav-logo"><span>PRIFISA</span></a>
+      <div class="admin-user">
+        <span>Conectado como <strong id="userEmail">—</strong></span>
+        <button class="btn-logout" id="logoutBtn">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div style="margin-top:36px;">
+      <span class="hero-badge"><span class="hero-badge-dot"></span> Panel de publicaciones</span>
+      <h1 style="font-size:30px;margin-top:14px;">Gestiona el blog de PRIFISA</h1>
+    </div>
+
+    <div class="admin-grid">
+
+      <!-- FORMULARIO -->
+      <div class="admin-panel-card">
+        <h2 id="formTitle">Nueva publicación</h2>
+        <p class="admin-card-sub">Los campos con * son obligatorios.</p>
+
+        <div class="admin-msg" id="formMsg"></div>
+
+        <form id="postForm" novalidate>
+          <input type="hidden" id="postId" value="" />
+
+          <div class="form-group">
+            <label for="title">Título *</label>
+            <input type="text" id="title" class="form-control" required />
+          </div>
+
+          <div class="form-group">
+            <label for="slug">URL (slug) *</label>
+            <input type="text" id="slug" class="form-control" required placeholder="ej. dac7-espana-que-es" />
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="category">Categoría</label>
+              <select id="category" class="form-control">
+                <option>Fiscalidad</option>
+                <option>Impuestos</option>
+                <option>Negocios digitales</option>
+                <option>Laboral</option>
+                <option>Legal</option>
+                <option>Finanzas</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="image_url">Imagen (URL, opcional)</label>
+              <input type="url" id="image_url" class="form-control" placeholder="https://..." />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="excerpt">Extracto (resumen corto) *</label>
+            <textarea id="excerpt" class="form-control" rows="2" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="content">Contenido *</label>
+            <textarea id="content" class="form-control" rows="10" required placeholder="Escribe el artículo. Deja una línea en blanco entre párrafos."></textarea>
+          </div>
+
+          <label class="admin-toggle">
+            <input type="checkbox" id="published" />
+            Publicar inmediatamente (si lo dejas sin marcar, queda como borrador)
+          </label>
+
+          <div class="admin-form-actions">
+            <button type="button" class="btn btn-outline btn-cancel-edit" id="cancelEditBtn">Cancelar edición</button>
+            <button type="submit" class="btn btn-primary" id="saveBtn">Guardar publicación</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- LISTADO -->
+      <div class="admin-panel-card">
+        <h2>Publicaciones</h2>
+        <p class="admin-card-sub">Edita, publica/despublica o elimina.</p>
+        <div id="postsList">
+          <div class="admin-loading">Cargando publicaciones...</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/supabase-config.js?v=1"></script>
+<script src="../assets/js/admin.js"></script>
+
+</body>
+</html>
